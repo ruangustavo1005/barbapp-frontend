@@ -41,9 +41,21 @@ public class barbershopDetails extends AppCompatActivity {
         String barbershopId = getIntent().getStringExtra("barbershopId");
 
         Button button = findViewById(R.id.btnAddProduct);
+        Button buttonInvite = findViewById(R.id.btnInvite);
+
+        if(!MainActivity.getUserLogged().isIs_barber()) {
+            button.setVisibility(View.GONE);
+            buttonInvite.setVisibility(View.GONE);
+        }
+
         button.setOnClickListener((View v) -> {
             Intent intent = new Intent(v.getContext(), AddProduct.class);
-            intent.putExtra("barbershopId", getIntent().getStringExtra("barbershopId"));
+            intent.putExtra("barbershopId", barbershopId);
+            startActivity(intent);
+        });
+        buttonInvite.setOnClickListener((View v) -> {
+            Intent intent = new Intent(v.getContext(), InviteBarbers.class);
+            intent.putExtra("barbershopId", barbershopId);
             startActivity(intent);
         });
 
@@ -52,7 +64,7 @@ public class barbershopDetails extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.body() != null) {
-                    ListView list = findViewById(R.id.productsList);
+                    ListView list = findViewById(R.id.barbersList);
 
                     List<String> produtos = new ArrayList<>();
                     for (Product product : response.body()) {

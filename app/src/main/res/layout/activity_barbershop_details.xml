@@ -8,6 +8,20 @@
     android:padding="16dp"
     tools:context=".barbershopDetails">
 
+    <Button
+        android:id="@+id/btnInvite"
+        android:layout_width="151dp"
+        android:layout_height="35dp"
+        android:backgroundTint="#40C9A2"
+        android:text="Convidar barbeiro"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
@@ -111,7 +125,7 @@
         app:layout_constraintVertical_bias="0.099" />
 
     <ListView
-        android:id="@+id/productsList"
+        android:id="@+id/barbersList"
         android:layout_width="378dp"
         android:layout_height="374dp"
         android:background="#40C9A2"
@@ -126,8 +140,9 @@
         android:id="@+id/btnAddProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#40C9A2"
         android:text="Adicionar"
-        app:layout_constraintBottom_toTopOf="@+id/productsList"
+        app:layout_constraintBottom_toTopOf="@+id/barbersList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"

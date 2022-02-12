@@ -54,8 +54,7 @@ public class AddProduct extends AppCompatActivity {
                                 Intent intent = new Intent(v.getContext(), barbershopDetails.class);
                                 intent.putExtra("barbershopId", getIntent().getStringExtra("barbershopId"));
                                 startActivity(intent);
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Houve um erro ao tentar inserir o produto: " + response.errorBody().toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -65,15 +64,12 @@ public class AddProduct extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Houve um erro ao tentar inserir o produto: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Informe o valor do produto", Toast.LENGTH_SHORT).show();
                 }
-            }
-            else {
+            } else {
                 Toast.makeText(getApplicationContext(), "Informe o nome do produto", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

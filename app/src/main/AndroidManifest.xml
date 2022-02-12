@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".InviteBarbers"
+            android:exported="false" />
+        <activity
             android:name=".ProductDetails"
             android:exported="false" />
         <activity
