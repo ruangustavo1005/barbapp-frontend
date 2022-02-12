@@ -18,7 +18,7 @@ public class ConexaoRetrofit {
                 .create();
 
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.110:3000/")
+                .baseUrl("http://192.168.2.4:3000/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }

@@ -3,8 +3,11 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,12 @@ public class barbershopDetails extends AppCompatActivity {
         getSupportActionBar().hide();
 
         String barbershopId = getIntent().getStringExtra("barbershopId");
+
+        Button button = findViewById(R.id.btnAddProduct);
+        button.setOnClickListener((View v) -> {
+            Intent intent = new Intent(v.getContext(), AddProduct.class);
+            startActivity(intent);
+        });
 
         ProductService productService = ConexaoRetrofit.getInstance().getRetrofit().create(ProductService.class);
         productService.list(MainActivity.getUserLogged().getToken(), Integer.parseInt(barbershopId)).enqueue(new Callback<List<Product>>() {
