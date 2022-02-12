@@ -42,6 +42,7 @@ public class barbershopDetails extends AppCompatActivity {
 
         Button button = findViewById(R.id.btnAddProduct);
         Button buttonInvite = findViewById(R.id.btnInvite);
+        ListView list = findViewById(R.id.barbersList);
 
         if(!MainActivity.getUserLogged().isIs_barber()) {
             button.setVisibility(View.GONE);
@@ -58,14 +59,18 @@ public class barbershopDetails extends AppCompatActivity {
             intent.putExtra("barbershopId", barbershopId);
             startActivity(intent);
         });
+        list.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(view.getContext(), ProductDetails.class);
+            intent.putExtra("barbershopId", barbershopId);
+            intent.putExtra("productId", list.getAdapter().getItem(position).toString().split(" - ")[0]);
+            startActivity(intent);
+        });
 
         ProductService productService = ConexaoRetrofit.getInstance().getRetrofit().create(ProductService.class);
         productService.list(MainActivity.getUserLogged().getToken(), Integer.parseInt(barbershopId)).enqueue(new Callback<List<Product>>() {
             @Override
             public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                 if (response.body() != null) {
-                    ListView list = findViewById(R.id.barbersList);
-
                     List<String> produtos = new ArrayList<>();
                     for (Product product : response.body()) {
                         produtos.add(product.getId() + " - " + product.getName());

@@ -25,9 +25,9 @@ public interface ProductService {
     public Call<List<Product>> list(@Header("Authorization") String authorization, @Path("id") int barbershopId);
 
     @GET("products/{id}")
-    public Call<List<Product>> listFromId(@Header("Authorization") String authorization, @Path("id") int productId);
+    public Call<Product> listFromId(@Header("Authorization") String authorization, @Path("id") int productId);
 
     @DELETE("products/{id}")
-    public Call<String> delete(@Header("Authorization") String authorization, @Path("id") int productId);
+    public Call<Object> delete(@Header("Authorization") String authorization, @Path("id") int productId);
 
 }
