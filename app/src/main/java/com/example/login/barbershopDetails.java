@@ -45,6 +45,7 @@ public class barbershopDetails extends AppCompatActivity {
 
         if(!MainActivity.getUserLogged().isIs_barber()) {
             button.setVisibility(View.GONE);
+            buttonInvite.setVisibility(View.GONE);
         }
 
         button.setOnClickListener((View v) -> {
