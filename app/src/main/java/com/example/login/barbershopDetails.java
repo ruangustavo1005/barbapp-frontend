@@ -43,6 +43,7 @@ public class barbershopDetails extends AppCompatActivity {
         Button button = findViewById(R.id.btnAddProduct);
         button.setOnClickListener((View v) -> {
             Intent intent = new Intent(v.getContext(), AddProduct.class);
+            intent.putExtra("barbershopId", getIntent().getStringExtra("barbershopId"));
             startActivity(intent);
         });
 
