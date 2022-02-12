@@ -51,6 +51,7 @@ public class AddProduct extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<Product> call, Response<Product> response) {
                             if (response.code() == 200) {
+                                Toast.makeText(getApplicationContext(), "Produto criado", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(v.getContext(), barbershopDetails.class);
                                 intent.putExtra("barbershopId", getIntent().getStringExtra("barbershopId"));
                                 startActivity(intent);

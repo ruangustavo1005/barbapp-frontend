@@ -76,10 +76,15 @@ public class InviteBarbers extends AppCompatActivity {
             inviteService.create(userLogged.getToken(), invite).enqueue(new Callback<Barbershop>() {
                 @Override
                 public void onResponse(Call<Barbershop> call, Response<Barbershop> response) {
-
-                    Intent intent = new Intent(view.getContext(), barbershopDetails.class);
-                    intent.putExtra("barbershopId", barbershopId);
-                    startActivity(intent);
+                    if (response.code() == 200) {
+                        Toast.makeText(getApplicationContext(), "Convite criado", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(view.getContext(), barbershopDetails.class);
+                        intent.putExtra("barbershopId", barbershopId);
+                        startActivity(intent);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Houve um erro ao tentar criar o convite.", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 @Override
