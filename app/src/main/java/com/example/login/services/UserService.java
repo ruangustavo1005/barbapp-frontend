@@ -18,6 +18,9 @@ public interface UserService {
     @GET("users")
     public Call<List<User>> list(@Header("Authorization") String authorization);
 
+    @GET("usersBarbers")
+    public Call<List<User>> listBarbers(@Header("Authorization") String authorization);
+
     @POST("login")
     public Call<User> login(@Body User user);
 
