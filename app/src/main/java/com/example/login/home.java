@@ -84,7 +84,7 @@ public class home extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Barbershop>> call, Response<List<Barbershop>> response) {
                 if (response.body() != null) {
-                    ListView list = findViewById(R.id.barbershopList);
+                    ListView list = findViewById(R.id.invitesList);
 
                     List<String> barbearias = new ArrayList<>();
                     for (Barbershop barbershop : response.body()) {
@@ -102,7 +102,7 @@ public class home extends AppCompatActivity {
             }
         });
 
-        ListView list = findViewById(R.id.barbershopList);
+        ListView list = findViewById(R.id.invitesList);
 
         list.setOnItemClickListener((parent, view, position, id) -> {
             String barbearia = (String) list.getItemAtPosition(position);
@@ -123,5 +123,21 @@ public class home extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
+
+        Button btnCreateBarbershop = findViewById(R.id.btnCreateBarbershop);
+        btnCreateBarbershop.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, CreateBarbershop.class);
+            startActivity(intent);
+        });
+
+        Button buttonInvite = findViewById(R.id.btnInvites);
+        if(MainActivity.getUserLogged().isIs_barber()) {
+            buttonInvite.setOnClickListener((View v) -> {
+                Intent intent = new Intent(this, MyInvites.class);
+                startActivity(intent);
+            });
+        } else {
+            buttonInvite.setVisibility(View.GONE);
+        }
     }
 }

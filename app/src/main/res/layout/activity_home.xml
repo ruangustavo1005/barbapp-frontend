@@ -55,32 +55,16 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="0.066" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Barbearias - Faça sua reserva!"
-        android:textColor="#FFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.286" />
-
     <ListView
-        android:id="@+id/barbershopList"
-        android:layout_width="358dp"
-        android:layout_height="435dp"
+        android:id="@+id/invitesList"
+        android:layout_width="351dp"
+        android:layout_height="359dp"
         android:background="#40C9A2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.724" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -171,5 +155,37 @@
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.656" />
+
+    <Button
+        android:id="@+id/btnCreateBarbershop"
+        android:layout_width="155dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginBottom="19dp"
+        android:backgroundTint="#40C9A2"
+        android:text="Criar Barbearia"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/invitesList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <Button
+        android:id="@+id/btnInvites"
+        android:layout_width="104dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginBottom="19dp"
+        android:backgroundTint="#40C9A2"
+        android:text="Convites"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/invitesList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.54" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
