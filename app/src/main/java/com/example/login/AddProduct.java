@@ -21,11 +21,13 @@ public class AddProduct extends AppCompatActivity {
         context = this;
 
         getSupportActionBar().hide();
-        getSupportActionBar().hide();
+
+        String barbershopId = getIntent().getStringExtra("barbershopId");
 
         Button button = findViewById(R.id.btnAdd);
         button.setOnClickListener((View v) -> {
             Intent intent = new Intent(v.getContext(), barbershopDetails.class);
+            intent.putExtra("barbershopId", barbershopId);
             startActivity(intent);
         });
 

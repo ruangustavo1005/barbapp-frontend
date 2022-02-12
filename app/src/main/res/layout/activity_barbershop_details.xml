@@ -9,7 +9,7 @@
     tools:context=".barbershopDetails">
 
     <Button
-        android:id="@+id/btnInviteBarber"
+        android:id="@+id/btnInvite"
         android:layout_width="151dp"
         android:layout_height="35dp"
         android:backgroundTint="#40C9A2"

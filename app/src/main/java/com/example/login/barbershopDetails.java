@@ -41,17 +41,20 @@ public class barbershopDetails extends AppCompatActivity {
         String barbershopId = getIntent().getStringExtra("barbershopId");
 
         Button button = findViewById(R.id.btnAddProduct);
+        Button buttonInvite = findViewById(R.id.btnInvite);
+
         if(!MainActivity.getUserLogged().isIs_barber()) {
             button.setVisibility(View.GONE);
         }
+
         button.setOnClickListener((View v) -> {
             Intent intent = new Intent(v.getContext(), AddProduct.class);
+            intent.putExtra("barbershopId", barbershopId);
             startActivity(intent);
         });
-
-        Button buttonInvite = findViewById(R.id.btnInviteBarber);
         buttonInvite.setOnClickListener((View v) -> {
             Intent intent = new Intent(v.getContext(), InviteBarbers.class);
+            intent.putExtra("barbershopId", barbershopId);
             startActivity(intent);
         });
 
