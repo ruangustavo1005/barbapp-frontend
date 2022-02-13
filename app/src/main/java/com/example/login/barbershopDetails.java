@@ -42,12 +42,8 @@ public class barbershopDetails extends AppCompatActivity {
 
         Button button = findViewById(R.id.btnAddProduct);
         Button buttonInvite = findViewById(R.id.btnInvite);
-        ListView list = findViewById(R.id.barbersList);
 
-        if(!MainActivity.getUserLogged().isIs_barber()) {
-            button.setVisibility(View.GONE);
-            buttonInvite.setVisibility(View.GONE);
-        }
+        ListView list = findViewById(R.id.barbersList);
 
         button.setOnClickListener((View v) -> {
             Intent intent = new Intent(v.getContext(), AddProduct.class);
@@ -107,6 +103,13 @@ public class barbershopDetails extends AppCompatActivity {
                     telefone.setText(response.body().getPhone());
                     TextView endereco = findViewById(R.id.textViewEnderecoBarbershopDetails);
                     endereco.setText(response.body().getAddress());
+                    TextView nomeBabearia = findViewById(R.id.labelBarbershopName);
+                    nomeBabearia.setText(response.body().getName());
+
+                    if (response.body().getUser().getId() != MainActivity.getUserLogged().getId()) {
+                        button.setVisibility(View.GONE);
+                        buttonInvite.setVisibility(View.GONE);
+                    }
                 }
             }
 

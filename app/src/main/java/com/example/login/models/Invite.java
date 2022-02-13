@@ -4,11 +4,24 @@ import java.util.Date;
 
 public class Invite {
 
+    static public int SITUACAO_PENDENTE = 1;
+    static public int SITUACAO_CONFIRMADO = 2;
+    static public int SITUACAO_CANCELADO = 3;
+
+    private int id;
     private Barbershop barbershop;
     private User user;
     private User barber;
     private Date schedule;
     private int situation;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Barbershop getBarbershop() {
         if (this.barbershop == null) {
@@ -58,4 +71,17 @@ public class Invite {
     public void setSituation(int situation) {
         this.situation = situation;
     }
+
+    public boolean isSituacaoPendente() {
+        return this.getSituation() == Invite.SITUACAO_PENDENTE;
+    }
+
+    public boolean isSituacaoConfirmado() {
+        return this.getSituation() == Invite.SITUACAO_CONFIRMADO;
+    }
+
+    public boolean isSituacaoCancelado() {
+        return this.getSituation() == Invite.SITUACAO_CANCELADO;
+    }
+
 }
