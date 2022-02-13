@@ -73,9 +73,9 @@ public class InviteBarbers extends AppCompatActivity {
             invite.getBarbershop().setId(Integer.parseInt(getIntent().getStringExtra("barbershopId")));
 
             InviteService inviteService = ConexaoRetrofit.getInstance().getRetrofit().create(InviteService.class);
-            inviteService.create(userLogged.getToken(), invite).enqueue(new Callback<Barbershop>() {
+            inviteService.create(userLogged.getToken(), invite).enqueue(new Callback<Invite>() {
                 @Override
-                public void onResponse(Call<Barbershop> call, Response<Barbershop> response) {
+                public void onResponse(Call<Invite> call, Response<Invite> response) {
                     if (response.code() == 200) {
                         Toast.makeText(getApplicationContext(), "Convite criado", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(view.getContext(), barbershopDetails.class);
@@ -88,7 +88,7 @@ public class InviteBarbers extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Barbershop> call, Throwable t) {
+                public void onFailure(Call<Invite> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Houve um erro ao tentar criar o convite: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
