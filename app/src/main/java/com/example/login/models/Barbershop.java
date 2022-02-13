@@ -6,7 +6,7 @@ public class Barbershop {
     private String name;
     private String phone;
     private String address;
-    private User user;
+    private User owner;
 
     public int getId() {
         return id;
@@ -40,14 +40,14 @@ public class Barbershop {
         this.address = address;
     }
 
-    public User getUser() {
-        if (user == null) {
-            user = new User();
+    public User getOwner() {
+        if (owner == null) {
+            owner = new User();
         }
-        return user;
+        return owner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOwner(User user) {
+        this.owner = user;
     }
 }

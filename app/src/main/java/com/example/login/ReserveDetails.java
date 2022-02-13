@@ -27,10 +27,5 @@ public class ReserveDetails extends AppCompatActivity {
             Intent intent = new Intent(this, home.class);
             startActivity(intent);
         });
-
-
-
-
-
     }
 }

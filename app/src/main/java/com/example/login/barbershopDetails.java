@@ -106,7 +106,7 @@ public class barbershopDetails extends AppCompatActivity {
                     TextView nomeBabearia = findViewById(R.id.labelBarbershopName);
                     nomeBabearia.setText(response.body().getName());
 
-                    if (response.body().getUser().getId() != MainActivity.getUserLogged().getId()) {
+                    if (response.body().getOwner().getId() != MainActivity.getUserLogged().getId()) {
                         button.setVisibility(View.GONE);
                         buttonInvite.setVisibility(View.GONE);
                     }
