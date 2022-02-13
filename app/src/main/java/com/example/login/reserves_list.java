@@ -3,6 +3,7 @@ package com.example.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -61,6 +62,14 @@ public class reserves_list extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Reserve>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Houve um erro ao tentar listar as reservas: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        ListView list = findViewById(R.id.reservesList);
+        list.setOnItemClickListener((parent, view, position, id) -> {
+            if(MainActivity.getUserLogged().isIs_barber()) {
+                Intent intent = new Intent(this, ReserveDetails.class);
+                startActivity(intent);
             }
         });
 

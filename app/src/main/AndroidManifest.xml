@@ -14,6 +14,12 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ReserveDetails"
+            android:exported="false" />
+        <activity
+            android:name=".AddReserve"
+            android:exported="false" />
+        <activity
             android:name=".InviteDetails"
             android:exported="false" />
         <activity

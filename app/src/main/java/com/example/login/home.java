@@ -125,10 +125,14 @@ public class home extends AppCompatActivity {
         });
 
         Button btnCreateBarbershop = findViewById(R.id.btnCreateBarbershop);
-        btnCreateBarbershop.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, CreateBarbershop.class);
-            startActivity(intent);
-        });
+        if(MainActivity.getUserLogged().isIs_barber()) {
+            btnCreateBarbershop.setOnClickListener((View v) -> {
+                Intent intent = new Intent(this, CreateBarbershop.class);
+                startActivity(intent);
+            });
+        } else {
+            btnCreateBarbershop.setVisibility(View.GONE);
+        }
 
         Button buttonInvite = findViewById(R.id.btnInvites);
         if(MainActivity.getUserLogged().isIs_barber()) {

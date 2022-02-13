@@ -13,8 +13,6 @@ import com.example.login.models.Product;
 import com.example.login.retrofit.ConexaoRetrofit;
 import com.example.login.services.ProductService;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,6 +23,8 @@ public class ProductDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
+
+        getSupportActionBar().hide();
 
         int productId = Integer.parseInt(getIntent().getStringExtra("productId"));
 

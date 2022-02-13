@@ -66,6 +66,17 @@ public class barbershopDetails extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button buttonAddReserve = findViewById(R.id.btnAddReserve);
+        if(!MainActivity.getUserLogged().isIs_barber()) {
+            buttonAddReserve.setOnClickListener((View v) -> {
+                Intent intent = new Intent(this, AddReserve.class);
+                intent.putExtra("barbershopId", barbershopId);
+                startActivity(intent);
+            });
+        } else {
+            buttonAddReserve.setVisibility(View.GONE);
+        }
+
         ProductService productService = ConexaoRetrofit.getInstance().getRetrofit().create(ProductService.class);
         productService.list(MainActivity.getUserLogged().getToken(), Integer.parseInt(barbershopId)).enqueue(new Callback<List<Product>>() {
             @Override
