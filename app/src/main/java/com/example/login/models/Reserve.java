@@ -8,11 +8,20 @@ public class Reserve {
                             SITUACAO_CONFIRMADO = 2,
                             SITUACAO_CANCELADO = 3;
 
+    private int id;
     private Date schedule;
     private int situation;
     private Barbershop barbershop;
     private User user;
     private User barber;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getSchedule() {
         return schedule;

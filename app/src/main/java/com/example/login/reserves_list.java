@@ -2,14 +2,17 @@ package com.example.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.models.Reserve;
+import com.example.login.models.User;
 import com.example.login.retrofit.ConexaoRetrofit;
 import com.example.login.services.ReserveService;
 
@@ -30,20 +33,20 @@ public class reserves_list extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserves_list);
 
+        getSupportActionBar().hide();
         context = this;
 
-        getSupportActionBar().hide();
+        User userLogged = MainActivity.getUserLogged();
+        ListView list = findViewById(R.id.reservesList);
+        List<String> reservas = new ArrayList<>();
 
         ReserveService reserveService = ConexaoRetrofit.getInstance().getRetrofit().create(ReserveService.class);
 
-        if (!MainActivity.getUserLogged().isIs_barber()) {
-            reserveService.listFromUser(MainActivity.getUserLogged().getToken(), MainActivity.getUserLogged().getId()).enqueue(new Callback<List<Reserve>>() {
+        if (!userLogged.isIs_barber()) {
+            reserveService.listFromUser(userLogged.getToken(), userLogged.getId()).enqueue(new Callback<List<Reserve>>() {
                 @Override
                 public void onResponse(Call<List<Reserve>> call, Response<List<Reserve>> response) {
                     if (response.code() == 200 && response.body() != null) {
-                        ListView list = findViewById(R.id.reservesList);
-                        List<String> reservas = new ArrayList<>();
-
                         for (Reserve reserve : response.body()) {
                             reservas.add((new SimpleDateFormat("dd/MM/yyyy HH:mm")).format(reserve.getSchedule())
                                     .concat(" - ")
@@ -53,9 +56,6 @@ public class reserves_list extends AppCompatActivity {
                                     .concat(reserve.getDescriptionSituation())
                                     .concat(")"));
                         }
-
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, reservas);
-                        list.setAdapter(adapter);
                     }
                 }
 
@@ -65,16 +65,38 @@ public class reserves_list extends AppCompatActivity {
                 }
             });
         }
+        else {
+            reserveService.listFromBarber(userLogged.getToken(), userLogged.getId()).enqueue(new Callback<List<Reserve>>() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onResponse(Call<List<Reserve>> call, Response<List<Reserve>> response) {
+                    if (response.code() == 200) {
+                        response.body().forEach(reserve -> reservas.add(
+                                (reserve.getId() + " - ")
+                                .concat(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(reserve.getSchedule()))
+                                .concat(" - ")
+                                .concat(reserve.getUser().getName())
+                                .concat(" (")
+                                .concat(reserve.getDescriptionSituation())
+                                .concat(")")
+                        ));
+                    }
+                }
 
-        
+                @Override
+                public void onFailure(Call<List<Reserve>> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Houve um erro ao tentar listar as reservas: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
-        if(MainActivity.getUserLogged().isIs_barber()) {
-            ListView list = findViewById(R.id.reservesList);
             list.setOnItemClickListener((parent, view, position, id) -> {
                 Intent intent = new Intent(view.getContext(), ReserveDetails.class);
+                intent.putExtra("reserveId", list.getAdapter().getItem(position).toString().split(" - ")[0]);
                 startActivity(intent);
             });
         }
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, reservas);
+        list.setAdapter(adapter);
     }
 }

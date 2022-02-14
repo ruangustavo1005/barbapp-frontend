@@ -10,6 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -39,5 +40,11 @@ public interface ReserveService {
 
     @GET("reserve/user/{id}/last")
     public Call<Reserve> getLastFromUser(@Header("Authorization") String authorization, @Path("id") int userId);
+
+    @PATCH("reserve/{id}/accept")
+    public Call<Object> acceptReserve(@Header("Authorization") String authorization, @Path("id") int reserveId);
+
+    @PATCH("reserve/{id}/recuse")
+    public Call<Object> recuseReserve(@Header("Authorization") String authorization, @Path("id") int reserveId);
 
 }

@@ -75,7 +75,7 @@ public class InviteDetails extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<Object> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(), "Houve um erro ao tentar entra na barbearia: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Houve um erro ao tentar entrar na barbearia: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
